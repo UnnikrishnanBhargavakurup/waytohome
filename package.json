@@ -1,23 +1,23 @@
 {
-  "name": "messenger-bot",
+  "name": "waytohome-bot",
   "version": "1.0.0",
-  "description": "Messenger Platform QuickStart Demo",
+  "description": "Messenger bot for https://www.facebook.com/waytohome.org",
   "main": "index.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vernon99/messenger-quick-start.git"
+    "url": "git+https://github.com/UnnikrishnanBhargavakurup/waytohome"
   },
   "keywords": [
     "messenger",
     "bot",
     "quickstart"
   ],
-  "author": "Mikhail Larionov <mlarionov@fb.com>",
+  "author": "Mikhail Larionov <mlarionov@fb.com>", "Unnikrishnan Bhargavakurup <unnikrishnanadoor@gmail.com>"
   "license": "MIT",
-  "homepage": "https://developers.facebook.com/docs/messenger-platform/guides/quick-start",
+  "homepage": "https://waytohome.org",
   "dependencies": {
     "body-parser": "*",
     "dotenv": "^4.0.0",
