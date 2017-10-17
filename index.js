@@ -3,15 +3,19 @@
 // https://glitch.com/edit/#!/messenger-bot?path=bot.js:1:0
 'use strict';
 const express = require('express');
+var helpers = require('express-helpers');
 const bodyParser = require('body-parser');
 const request = require('request');
 const path = require('path');
+const www  = require(__dirname + '/modules/www');
 require('dotenv').config();
-var messengerButton = "<html><head><title>Facebook Messenger Bot</title></head><body><h1>Facebook Messenger Bot</h1>This is a bot based on Messenger Platform QuickStart. For more details, see their <a href=\"https://developers.facebook.com/docs/messenger-platform/guides/quick-start\">docs</a>.<script src=\"https://button.glitch.me/button.js\" data-style=\"glitch\"></script><div class=\"glitchButton\" style=\"position:fixed;top:20px;right:20px;\"></div></body></html>";
 
 // The rest of the code implements the routes for our Express server.
 let app = express();
-
+helpers(app);
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/assets'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -29,15 +33,17 @@ app.get('/webhook', function(req, res) {
   }
 });
 
-// Display the web page
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
+// Display home page
+app.get("/", www.home);
 
-// Display the web page
-app.get("/policy.html", function (request, response) {
-  response.sendFile(__dirname + '/views/policy.html');
-});
+// Display policy page
+app.get("/privacy-policy.html", www.policy);
+
+// Display contact page
+app.get("/contact.html", www.contact_view);
+
+// submit contact page
+app.post('/contact.html', www.contact_submit);
 
 // Message processing
 app.post('/webhook', function (req, res) {
